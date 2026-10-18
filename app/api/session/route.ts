@@ -11,3 +11,11 @@ export async function GET(){
  if(!jar.get("fta_session")?.value)response.cookies.set("fta_session",token,{httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",path:"/",maxAge:86400});
  return response;
 }
+
+// A new visit is intentionally a new planning journey. Old rows remain only as
+// short-lived server records and are not restored into the customer interface.
+export async function POST(){
+ const response=NextResponse.json({fresh:true});
+ response.cookies.set("fta_session",randomUUID(),{httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",path:"/",maxAge:86400});
+ return response;
+}
