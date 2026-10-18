@@ -1,7 +1,7 @@
 -- Source-backed product records. All unknown fields remain NULL; this table does not imply live inventory.
 create table if not exists public.outfitter_products (
   id text primary key,
-  slot text not null check (slot in ('backpack','shelter','bag','pad','running-shoes','hydration')),
+  slot text not null check (slot in ('backpack','shelter','bag','pad','stove','water-treatment','headlamp','first-aid','running-shoes','hydration')),
   activity_ids text[] not null,
   brand text not null,
   name text not null,
